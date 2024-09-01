@@ -1,0 +1,25 @@
+﻿<div class="app-bar">
+    <div class="app-text">
+        <span class="app-icon">
+            <GradatedText>
+                &#xe906
+            </GradatedText>
+        </span>
+        <div class="app-title">
+            <GradatedText>
+                Awesome Blazor Browser
+            </GradatedText>
+        </div>
+        <div class="app-description">
+            This is a browser for
+            <a href="https://github.com/AdrienTorris/awesome-blazor" target="_blank">"Awesome Blazor"</a>.<br />
+            Special thanks to contributor's great works!
+        </div>
+    </div>
+
+    <div class="search-box @CssClass(new{EnableSearchBox})">
+        <a class="icon icon-menu" @onclick="@(()=> this.OnClickGroupPanelMenu.InvokeAsync())"></a>
+        <input type="text" placeholder="Search" @bind-value="Keywords" @oninput="OnInputKeywords" />
+        <a class="icon icon-settings" @onclick="@(()=> this.OnClickSettings.InvokeAsync())"></a>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿@import '../icons.variables.scss';
+
+$group-title-size: 26px;
+
+.group-selector {
+    & > .group {
+        a.link {
+            transition: color linear 0.2s;
+        }
+
+        &:not(.visible) {
+            a.link {
+                color: var(--deadlink-text-color);
+                cursor: default;
+                pointer-events: none;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+
+            .toggle-box {
+                color: var(--deadlink-text-color);
+            }
+        }
+
+        & > .group-title {
+            white-space: nowrap;
+            height: $group-title-size;
+            display: flex;
+
+            & > .expand-box {
+                display: inline-block;
+                color: var(--default-text-color);
+                text-decoration: none;
+                transition: transform linear 0.2s;
+                width: $group-title-size;
+                height: $group-title-size;
+
+                &:before {
+                    display: inline-block;
+                    content: $icon-expand-more;
+                    font-size: 18px;
+                    width: $group-title-size;
+                    height: $group-title-size;
+                    line-height: $group-title-size;
+                    text-align: center;
+                }
+            }
+        }
+
+        &.expanded {
+            & > .group-title {
+                & > .expand-box {
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+    }
+
+    .sub-group {
+        padding-left: 10px;
+        overflow: hidden;
+        transition: height ease 0.2s;
+    }
+}

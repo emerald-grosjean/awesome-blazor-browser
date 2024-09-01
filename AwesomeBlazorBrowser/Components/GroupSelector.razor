@@ -1,0 +1,37 @@
+﻿<div class="group-selector">
+    @foreach (var group in Groups)
+    {
+        var hasSubGroup = group.SubGroups.Any();
+        var anchorName = group.GetAnchorName(ParentGroupAnchor);
+
+        <div class="@CssClass("group", new { group.Expanded, group.Visible })">
+
+            <div class="group-title">
+
+                <label class="@CssClass("toggle-box", group.SelectionState)">
+                    <input type="button" @onclick="@(() => OnClickToggleBox(group))" />
+                </label>
+
+                <a href="#@anchorName" class="link" @onclick="@(() => _OnClickGroupLink(anchorName))" @onclick:preventDefault="true">
+                    @group.Title
+                </a>
+
+                @if (hasSubGroup)
+                {
+                    <a class="icon expand-box" @onclick="@(() => OnClickExpandBox(group))">
+                    </a>
+                }
+            </div>
+
+            @if (hasSubGroup)
+            {
+                <div class="sub-group" style="height:@GetSubGroupsHeight(group);">
+                    <GroupSelector ParentGroupAnchor="@anchorName"
+                                   Groups="group.SubGroups"
+                                   OnChangeGroupState="_OnChangeSubGroupState"
+                                   OnClickGroupLink="@(()=> OnClickGroupLink.InvokeAsync())"/>
+                </div>
+            }
+        </div>
+    }
+</div>

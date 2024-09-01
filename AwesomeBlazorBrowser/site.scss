@@ -1,0 +1,46 @@
+﻿@import "site.theme.scss";
+
+body, input[type=text] {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+    color: var(--default-text-color);
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: var(--default-back-color);
+}
+
+input[type=text] {
+    font-size: 14px;
+}
+
+a {
+    color: var(--default-link-color);
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &.clickable {
+        cursor: default;
+        user-select: none;
+        transition: color linear 0.2s;
+
+        &:hover {
+            color: var(--default-link-color-light);
+            text-decoration: none;
+        }
+    }
+}
+
+@import 'icons.scss';
+@import 'toggle-box.scss';
+@import 'App.razor.scss';
+@import 'Components/AppBar.razor.scss';
+@import 'Components/GroupsPanel.razor.scss';
+@import 'Components/GroupSelector.razor.scss';
+@import 'Components/Contents.razor.scss';
+@import 'Components/Footer.razor.scss';
+@import 'Components/Settings.razor.scss';

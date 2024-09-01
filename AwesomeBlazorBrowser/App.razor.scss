@@ -1,0 +1,147 @@
+﻿@import "site.mixin.scss";
+@import "site.variables.scss";
+
+$app-bar-height: 72px;
+$app-bar-height-large: 100px;
+$left-pane-width: 280px;
+$right-pane-width: 180px;
+$footer-height: 38px;
+
+#app {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+    background-color: var(--default-back-color);
+
+    & > .header-pane {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: $app-bar-height;
+    }
+
+    & > .loading-mask {
+        position: absolute;
+        top: $app-bar-height;
+        left: 0;
+        bottom: $footer-height;
+        right: 0;
+        z-index: 3;
+        background-color: var(--default-back-color);
+    }
+
+    & > .left-pane {
+        border-right: solid 1px var(--default-border-color);
+        display: block;
+        position: absolute;
+        top: $app-bar-height;
+        left: 0;
+        bottom: $footer-height;
+        width: $left-pane-width;
+        transition: left ease 0.2s;
+        z-index: 1;
+        background-color: var(--default-back-color);
+    }
+
+    & > .right-pane {
+        border-left: solid 1px var(--default-border-color);
+        display: block;
+        position: absolute;
+        top: $app-bar-height;
+        right: -1 * $right-pane-width - 1;
+        bottom: $footer-height;
+        width: $right-pane-width;
+        transition: right ease 0.2s;
+        z-index: 2;
+        background-color: var(--default-back-color);
+
+        &.settings-panel-expanded {
+            right: 0;
+        }
+    }
+
+    & > .main-mask {
+        display: block;
+        position: absolute;
+        top: $app-bar-height;
+        bottom: $footer-height;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        background-color: #000;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity ease 0.2s;
+
+        &.settings-panel-expanded {
+            opacity: 0.5;
+            pointer-events: all;
+        }
+    }
+
+    & > .main {
+        display: block;
+        position: absolute;
+        top: $app-bar-height;
+        left: $left-pane-width;
+        bottom: $footer-height;
+        right: 0;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        transition: left ease 0.2s;
+
+        @include scrollbar-color(var(--scrollbar-thumb-color), var(--scrollbar-back-color));
+    }
+
+    & > .footer-pane {
+        border-top: solid 1px var(--default-border-color);
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: $footer-height;
+    }
+
+    @media (max-width: $breakpoints-sm) {
+        & > .header-pane {
+            height: $app-bar-height-large;
+        }
+
+        & > .left-pane {
+            top: $app-bar-height-large;
+            left: -1 * $left-pane-width - 1;
+            z-index: 2;
+
+            &.group-panel-expanded {
+                left: 0;
+            }
+        }
+
+        & > .right-pane {
+            top: $app-bar-height-large;
+        }
+
+        & > .main-mask {
+            top: $app-bar-height-large;
+
+            &.group-panel-expanded {
+                opacity: 0.5;
+                pointer-events: all;
+            }
+        }
+
+        & > .main {
+            top: $app-bar-height-large;
+            left: 0;
+        }
+
+        & > .loading-mask {
+            top: $app-bar-height-large;
+        }
+    }
+}

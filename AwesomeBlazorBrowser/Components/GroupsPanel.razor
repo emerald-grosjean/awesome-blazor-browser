@@ -1,0 +1,15 @@
+﻿<div class="groups-panel">
+
+    <div class="header">
+        <label class="@CssClass("toggle-box", Group.SelectionState)">
+            <input type="button" @onclick="@(() => OnClickToggleBox(Group))" />
+        </label>
+        <span class="text">Categories</span>
+    </div>
+
+    <div class="selector">
+        <GroupSelector Groups="Group.SubGroups"
+                       OnChangeGroupState="_OnChangeGroupState"
+                       OnClickGroupLink="@(() => OnClickGroupLink.InvokeAsync())" />
+    </div>
+</div>

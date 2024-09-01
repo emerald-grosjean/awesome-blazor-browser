@@ -1,0 +1,113 @@
+﻿@import "../icons.variables.scss";
+@import "../site.variables.scss";
+
+.app-bar {
+    background-color: var(--appbar-back-color);
+    color: var(--appbar-text-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    & > .app-text {
+        position: relative;
+        margin-left: 16px;
+        padding-left: 46px;
+
+        .app-icon {
+            font-family: '#{$icomoon-font-family}';
+            font-size: 32px;
+            position: absolute;
+            top: -2px;
+            left: 0;
+        }
+
+        min-width: 280px;
+
+        a {
+            color: #86bfff;
+        }
+
+        & > .app-title {
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        & > .app-description {
+            font-size: 12px;
+            color: var(--weaked-text-color);
+            line-height: 14px;
+        }
+    }
+
+    & > .search-box {
+        margin-left: 16px;
+        margin-right: 16px;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        visibility: hidden;
+
+        &.enable-search-box {
+            visibility: visible;
+        }
+
+        .icon-menu, .icon-settings {
+            color: var(--appbar-text-color);
+            text-decoration: none;
+            font-size: 24px;
+            padding: 8px;
+            transition: color ease 0.2s;
+
+            &:hover {
+                color: #fff;
+            }
+        }
+
+        .icon-menu {
+            display: none;
+        }
+
+        input {
+            background-color: var(--searchbox-back-color);
+            flex-grow: 1;
+            border: solid 1px var(--searchbox-border-color);
+            height: 28px;
+            padding-left: 10px;
+            border-radius: 4px;
+            color: var(--searchbox-text-color);
+            outline: none;
+
+            &:focus {
+                background-color: var(--searchbox-back-color-focused);
+                color: var(--searchbox-text-color-focused);
+            }
+        }
+    }
+
+    @media (max-width: $breakpoints-sm) {
+        flex-direction: column;
+        justify-content: center;
+
+        & > .app-text {
+            & > .app-description {
+                font-size: 12px;
+                line-height: 12px;
+            }
+        }
+
+        & > .search-box {
+            width: 100%;
+            flex-grow: 0;
+            margin-top: 6px;
+
+            .icon-menu {
+                display: inline-block;
+            }
+        }
+    }
+}
